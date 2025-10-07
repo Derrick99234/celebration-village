@@ -1,103 +1,50 @@
-import Image from "next/image";
+import About from "@/components/home-page/aboutPage";
+import CustomerTestimonials from "@/components/home-page/CustomerTestimonials";
+import WhyChooseUs from "@/components/home-page/WhyChooseUs";
+import ImageSlider from "@/components/ImageSlider";
 
 export default function Home() {
+  // const images = [
+  //   "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg", // Make sure to put your images in the public folder
+  //   "https://cdn.pixabay.com/photo/2013/09/05/10/38/catering-179046_1280.jpg",
+  //   "https://cdn.pixabay.com/photo/2016/03/27/18/53/drinks-1283608_1280.jpg",
+  //   // "https://cdn.pixabay.com/photo/2024/08/06/10/43/wine-8949009_1280.jpg",
+  //   "https://cdn.pixabay.com/photo/2019/12/19/09/07/deco-4705709_1280.jpg",
+  // ];
+  const slides = [
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg",
+      h1: "Where Every Moment Becomes a Masterpiece",
+      text: "Welcome to Celebration Village, a place where every event is crafted with love, elegance, and creativity. From intimate gatherings to grand celebrations, we design unforgettable moments that leave a lasting impression. Let us bring your vision to life with passion, tradition, and attention to every detail.",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2013/09/05/10/38/catering-179046_1280.jpg",
+      h1: "Your Dream Event, Our Passionate Craft",
+      text: "At Celebration Village, we believe in transforming each celebration into a timeless experience. Our team of passionate creators works with you to design, plan, and execute every detail with grace. Experience a celebration beyond your imagination, where every moment tells a story of connection, joy, and celebration.",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2016/03/27/18/53/drinks-1283608_1280.jpg",
+      h1: "Elegance in Every Detail, Joy in Every Moment",
+      text: "Step into Celebration Village, where your special occasion is more than just an event—it's a journey of emotions, culture, and togetherness. From the first idea to the final flourish, we create personalized celebrations filled with heart and creativity, designed to reflect your unique story and vision.",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2019/12/19/09/07/deco-4705709_1280.jpg",
+      h1: "Creating Timeless Memories, One Celebration at a Time",
+      text: "At Celebration Village, we understand that the most important part of any celebration is the connection it fosters. Whether it's the beauty of shared traditions or the excitement of new beginnings, we deliver a seamless event experience that feels both personal and extraordinary. Let us guide you through every step of crafting a day that will be remembered forever.",
+    },
+  ];
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      <div className="h-screen bg-gray-100 flex flex-col items-center justify-center">
+        <ImageSlider content={slides} />
+      </div>
+      <About />
+      <WhyChooseUs />
+      <CustomerTestimonials />
+    </>
   );
 }
