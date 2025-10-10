@@ -8,7 +8,7 @@ import { SlLocationPin } from "react-icons/sl";
 
 function Header() {
   return (
-    <header>
+    <header className="fixed top-0 w-full z-50 shadow-md">
       <div className="bg-white flex p-3 justify-around items-center">
         <div className="flex text-sm gap-6">
           <address className="cursor-pointer flex gap-2 items-center">
@@ -27,11 +27,11 @@ function Header() {
       </div>
       <nav className="bg-yellow-600 text-white flex justify-center gap-8 p-4">
         <Image
-          src="/globe.svg"
+          src="/images/celebration_village_logo.png"
           alt="Logo"
-          width={120}
+          width={100}
           height={60}
-          className="absolute left-4 top-4 z-50"
+          className="absolute left-4 top-0 z-50"
         />
 
         <ul className="flex gap-8">

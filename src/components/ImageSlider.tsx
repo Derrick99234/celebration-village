@@ -44,7 +44,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ content }) => {
               height={475}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/60 h-screen flex-col flex pt-28">
+            <div className="absolute inset-0 bg-black/60 h-screen flex-col flex pt-36">
               <div className="max-w-4xl pl-10">
                 <h2 className="text-white text-7xl font-semibold mb-7">
                   {slide.h1}
