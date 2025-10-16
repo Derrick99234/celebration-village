@@ -86,7 +86,7 @@ function Header() {
       </div>
 
       {/* --- 2. Main Navigation Bar --- */}
-      <nav className="bg-yellow-700 text-white flex justify-between lg:justify-center items-center p-3 lg:p-4">
+      <nav className="bg-black text-white flex justify-between lg:justify-center items-center p-3 lg:p-4">
         {/* Logo (Adjusted position and size for better flow) */}
         <div className="h-10 w-[100px] sm:w-[120px] ml-4 lg:ml-0 z-100">
           <Image
@@ -113,7 +113,7 @@ function Header() {
 
       {/* --- 3. Mobile Dropdown Menu --- */}
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-[100%] w-full bg-yellow-700/95 transition-all duration-300">
+        <div className="lg:hidden absolute top-[100%] w-full bg-black transition-all duration-300">
           <ul className="flex flex-col gap-2 p-4 pt-16 text-white text-lg font-medium">
             {navLinks}
             <li className="pt-2 mt-2 border-t border-amber-500">

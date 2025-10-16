@@ -195,12 +195,12 @@ const FooterSection: React.FC = () => {
       <div className="bg-neutral-900 py-4 border-t border-neutral-800 relative">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs text-neutral-500">
           <p className="mb-2 md:mb-0">
-            © Copyright 2022{" "}
-            <span className="text-amber-500">Empire Banquet Hall</span> All
+            © Copyright 2025{" "}
+            <span className="text-amber-500">Celebration Village</span> All
             Rights Reserved.
           </p>
           <p>
-            Designed By <span className="text-amber-500">TasTechnologies</span>
+            Designed By <span className="text-amber-500">Deritech</span>
           </p>
         </div>
 

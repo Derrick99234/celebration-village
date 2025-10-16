@@ -15,7 +15,7 @@ export default function Home() {
     {
       image:
         "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg",
-      h1: "Where Every Moment Becomes a Masterpiece",
+      h1: "Where Every Event Becomes a Masterpiece",
       text: "Welcome to Celebration Village, a place where every event is crafted with love, elegance, and creativity. From intimate gatherings to grand celebrations, we design unforgettable moments that leave a lasting impression. Let us bring your vision to life with passion, tradition, and attention to every detail.",
       ctaText: "Book Your Consultation",
       ctaLink: "/book-event",

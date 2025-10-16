@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 // NOTE: Since the file must be self-contained, the Next.js 'Image' component
@@ -9,6 +10,7 @@ type Content = {
   image: string;
   h1: string;
   text: string;
+  ctaLink: string;
 };
 
 interface ImageSliderProps {
@@ -16,58 +18,53 @@ interface ImageSliderProps {
 }
 
 // Example content structure (for preview purposes, assuming data is passed via props)
-const DEFAULT_CONTENT: Content[] = [
-  {
-    image:
-      "https://placehold.co/1920x1080/461F46/FFFFFF?text=Celebration+Village+Slide+1",
-    h1: "Your Perfect Event Starts Here",
-    text: "From intimate gatherings to grand celebrations, we provide the perfect setting and professional service to make your vision a reality. Let us handle the details while you enjoy the moment.",
-  },
-  {
-    image:
-      "https://placehold.co/1920x1080/1F4646/FFFFFF?text=Gourmet+Catering+Slide+2",
-    h1: "Exquisite Cuisine, Unforgettable Flavors",
-    text: "Our dedicated culinary team crafts custom menus using the freshest ingredients. Explore our diverse options designed to delight every guest at your special occasion.",
-  },
-  {
-    image:
-      "https://placehold.co/1920x1080/46461F/FFFFFF?text=Versatile+Venues+Slide+3",
-    h1: "Versatile Venues for Any Occasion",
-    text: "Offering flexible spaces that adapt to weddings, corporate functions, and community events. Discover the variety of our beautiful, customizable halls and outdoor areas.",
-  },
-];
+// const DEFAULT_CONTENT: Content[] = [
+//   {
+//     image:
+//       "https://placehold.co/1920x1080/461F46/FFFFFF?text=Celebration+Village+Slide+1",
+//     h1: "Your Perfect Event Starts Here",
+//     text: "From intimate gatherings to grand celebrations, we provide the perfect setting and professional service to make your vision a reality. Let us handle the details while you enjoy the moment.",
+//   },
+//   {
+//     image:
+//       "https://placehold.co/1920x1080/1F4646/FFFFFF?text=Gourmet+Catering+Slide+2",
+//     h1: "Exquisite Cuisine, Unforgettable Flavors",
+//     text: "Our dedicated culinary team crafts custom menus using the freshest ingredients. Explore our diverse options designed to delight every guest at your special occasion.",
+//   },
+//   {
+//     image:
+//       "https://placehold.co/1920x1080/46461F/FFFFFF?text=Versatile+Venues+Slide+3",
+//     h1: "Versatile Venues for Any Occasion",
+//     text: "Offering flexible spaces that adapt to weddings, corporate functions, and community events. Discover the variety of our beautiful, customizable halls and outdoor areas.",
+//   },
+// ];
 
-const ImageSlider: React.FC<ImageSliderProps> = ({
-  content = DEFAULT_CONTENT,
-}) => {
+const ImageSlider: React.FC<ImageSliderProps> = ({ content }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Guard against empty content array
-  const slides = content.length > 0 ? content : DEFAULT_CONTENT;
 
   // Change the current slide every 8 seconds (kept from your original code)
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (content.length === 0) return;
 
     const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % content.length);
     }, 8000);
 
     return () => clearInterval(intervalId); // Clean up the interval on component unmount
-  }, [slides.length]);
+  }, [content.length]);
 
   // Handlers for manual navigation
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % content.length);
   };
 
   const goToPrev = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+      (prevIndex) => (prevIndex - 1 + content.length) % content.length
     );
   };
 
-  if (slides.length === 0) return null;
+  if (content.length === 0) return null;
 
   return (
     // Ensured container spans full height of the viewport
@@ -79,7 +76,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
           transform: `translateX(-${currentIndex * 100}%)`,
         }}
       >
-        {slides.map((slide, index) => (
+        {content.map((slide, index) => (
           <div key={index} className="relative w-full flex-shrink-0 h-full">
             {/* Image (Responsive Background) */}
             <Image
@@ -112,9 +109,12 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
                 </p>
 
                 {/* CTA Button - REVERTED TO ORIGINAL STYLE */}
-                <button className="mt-8 px-6 py-2 bg-yellow-700 text-white cursor-pointer">
+                <Link
+                  href={slide.ctaLink}
+                  className="mt-8 px-6 py-2 bg-black text-white cursor-pointer inline-block"
+                >
                   Explore your needs
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -134,12 +134,12 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
 
       {/* Navigation Dots (Mobile friendly) */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-        {slides.map((_, index) => (
+        {content.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+            className={`w-1 h-1 rounded-full transition-colors duration-300 ${
               currentIndex === index
                 ? "bg-white scale-125 shadow-md"
                 : "bg-gray-400/70"
@@ -149,7 +149,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
       </div>
 
       {/* Prev/Next Buttons (Hidden on small screens, shown on medium/desktop) */}
-      <button
+      {/* <button
         onClick={goToPrev}
         aria-label="Previous slide"
         className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 transition duration-300 hidden md:block z-10"
@@ -184,7 +184,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
             clipRule="evenodd"
           />
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 };
