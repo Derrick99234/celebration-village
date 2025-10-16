@@ -8,8 +8,15 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
 
-    // ✅ Save to Excel
-    const filePath = path.join(process.cwd(), "bookings.xlsx");
+    // ✅ Save Excel inside /public folder
+    const fileDir = path.join(process.cwd(), "public");
+    const filePath = path.join(fileDir, "bookings.xlsx");
+
+    // Make sure the directory exists
+    if (!fs.existsSync(fileDir)) {
+      fs.mkdirSync(fileDir, { recursive: true });
+    }
+
     let workbook, worksheet;
 
     if (fs.existsSync(filePath)) {
@@ -25,9 +32,11 @@ export async function POST(req: Request) {
     const newData = [...existingData, data];
     const newWorksheet = XLSX.utils.json_to_sheet(newData);
     workbook.Sheets[workbook.SheetNames[0]] = newWorksheet;
+
+    // ✅ Save to file
     XLSX.writeFile(workbook, filePath);
 
-    // ✅ Send Email Notifications
+    // ✅ Email Notifications
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -36,7 +45,7 @@ export async function POST(req: Request) {
       },
     });
 
-    // Admin notification
+    // Notify admin
     await transporter.sendMail({
       from: `"Event Booking" <${process.env.EMAIL_USER}>`,
       to: process.env.ADMIN_EMAIL,
@@ -53,7 +62,7 @@ Message: ${data.message}
       `,
     });
 
-    // User confirmation
+    // Confirm with user
     await transporter.sendMail({
       from: `"Event Booking" <${process.env.EMAIL_USER}>`,
       to: data.email,

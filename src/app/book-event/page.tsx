@@ -241,7 +241,7 @@ const BookingSection: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3 mt-6 bg-amber-600 text-white font-semibold rounded-lg shadow-md hover:bg-amber-700 transition duration-200 transform hover:scale-[1.01]"
+                className="cursor-pointer w-full py-3 mt-6 bg-amber-600 text-white font-semibold rounded-lg shadow-md hover:bg-amber-700 transition duration-200 transform hover:scale-[1.01]"
               >
                 BOOK NOW
               </button>

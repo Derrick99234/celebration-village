@@ -340,7 +340,7 @@ const ContactSection: React.FC = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="py-3 px-10 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-neutral-800 transition duration-200"
+                  className="py-3 px-10 bg-black text-white font-semibold cursor-pointer rounded-lg shadow-md hover:bg-neutral-800 transition duration-200"
                   style={{ boxShadow: "0 4px 15px rgba(234, 179, 8, 0.4)" }}
                 >
                   SUBMIT
