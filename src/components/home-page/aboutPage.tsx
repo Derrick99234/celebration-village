@@ -5,9 +5,9 @@ import { GoArrowRight } from "react-icons/go";
 
 const About = () => {
   return (
-    <div className="flex items-center justify-between gap-16 max-w-7xl mx-auto min-h-screen px-6">
+    <div className="flex max-[974px]:flex-wrap items-center justify-between gap-16 max-w-7xl mx-auto min-h-screen px-6">
       {/* Left Section: Image */}
-      <div className="w-1/2">
+      <div className="w-1/2 max-[974px]:w-full">
         <div className="relative border-r-4 border-yellow-700 p-6 overflow-hidden">
           <Image
             src="https://cdn.pixabay.com/photo/2016/11/21/15/58/wedding-1846114_1280.jpg" // Place the image in the public folder
@@ -18,9 +18,8 @@ const About = () => {
           />
         </div>
       </div>
-
       {/* Right Section: Text Content */}
-      <div className="w-1/2">
+      <div className="w-1/2 max-[974px]:w-full max-[974px]:mb-10">
         <h1 className="text-3xl font-bold text-gray-800 mb-3">
           <span className="text-yellow-800">Celebration Village</span>
         </h1>

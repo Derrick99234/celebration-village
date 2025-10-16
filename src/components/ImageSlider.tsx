@@ -99,7 +99,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
               {/* Padding and Max Width reverted to fixed values */}
               <div className="max-w-4xl pl-10 pr-4 w-full">
                 {/* Heading: Reverted to fixed 7xl font size and original style */}
-                <h1 className="text-white text-7xl font-semibold mb-7 animate-slide-in text-left">
+                <h1 className="text-white md:text-7xl text-4xl font-semibold mb-7 animate-slide-in text-left">
                   {slide.h1}
                 </h1>
 
