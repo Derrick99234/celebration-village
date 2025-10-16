@@ -135,21 +135,51 @@ const ContactSection: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Booking Data Submitted:", formData);
-    // Add API submission logic here
-    // Replaced alert() with a console log and custom message due to constraint
-    const messageBox = document.getElementById("form-message");
-    if (messageBox) {
-      messageBox.textContent =
-        "Thank you for your inquiry! We have simulated the submission.";
-      messageBox.classList.remove("hidden");
-      messageBox.classList.add("opacity-100");
-      setTimeout(() => {
-        messageBox.classList.add("hidden");
-        messageBox.classList.remove("opacity-100");
-      }, 3000);
+
+    try {
+      const res = await fetch("/api/book-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("Booking Data Submitted:", data);
+
+        const messageBox = document.getElementById("form-message");
+        if (messageBox) {
+          messageBox.textContent =
+            "✅ Thank you! Your event has been booked successfully. A confirmation email has been sent.";
+          messageBox.classList.remove("hidden");
+          messageBox.classList.add("opacity-100");
+          setTimeout(() => {
+            messageBox.classList.add("hidden");
+            messageBox.classList.remove("opacity-100");
+          }, 4000);
+        }
+
+        // Reset form after submission
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          eventType: "",
+          date: "",
+          guestCount: "",
+          message: "",
+        });
+      } else {
+        alert("❌ Error: " + data.error);
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("❌ Something went wrong while submitting your booking.");
     }
   };
 

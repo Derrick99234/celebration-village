@@ -61,13 +61,53 @@ const BookingSection: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Booking Data Submitted:", formData);
-    // Add API submission logic here
-    alert("Booking request simulated. Check console for data.");
-  };
 
+    try {
+      const res = await fetch("/api/book-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("Booking Data Submitted:", data);
+
+        const messageBox = document.getElementById("form-message");
+        if (messageBox) {
+          messageBox.textContent =
+            "✅ Thank you! Your event has been booked successfully. A confirmation email has been sent.";
+          messageBox.classList.remove("hidden");
+          messageBox.classList.add("opacity-100");
+          setTimeout(() => {
+            messageBox.classList.add("hidden");
+            messageBox.classList.remove("opacity-100");
+          }, 4000);
+        }
+
+        // Reset form after submission
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          eventType: "",
+          date: "",
+          guestCount: "",
+          message: "",
+        });
+      } else {
+        alert("❌ Error: " + data.error);
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("❌ Something went wrong while submitting your booking.");
+    }
+  };
   return (
     <div className="bg-white font-sans" id="book">
       <Image
@@ -90,6 +130,14 @@ const BookingSection: React.FC = () => {
             <h2 className="text-4xl font-extrabold text-neutral-900 mb-8">
               Book <span className="text-amber-600">Event</span>
             </h2>
+
+            <div
+              id="form-message"
+              className="hidden mb-4 p-3 bg-amber-100 border border-amber-400 text-amber-800 rounded-lg transition-opacity duration-300 opacity-0"
+              role="alert"
+            >
+              Thank you for your inquiry!
+            </div>
 
             {/* Booking Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
