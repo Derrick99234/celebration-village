@@ -199,7 +199,7 @@ const PackagePill: React.FC<{
     className={`px-6 py-3 mx-2 rounded-full font-bold text-lg transition duration-300 shadow-xl transform hover:scale-[1.05] 
             ${
               active
-                ? "bg-amber-600 text-white shadow-amber-900/50 ring-4 ring-amber-300"
+                ? "bg-yellow-600 text-white shadow-yellow-900/50 ring-4 ring-yellow-300"
                 : "bg-white text-neutral-800 hover:bg-neutral-200 shadow-neutral-400/50"
             }`}
   >
@@ -303,7 +303,7 @@ const PackagesPage: React.FC = () => {
         </section>
 
         {/* --- NAVIGATION/PILLS --- */}
-        <section className="flex justify-center flex-wrap mb-16 sticky top-0 bg-neutral-100 py-4 z-10 shadow-lg rounded-xl">
+        <section className="flex justify-center gap-4 flex-wrap mb-16 sticky top-16 bg-neutral-100 py-4 z-10 shadow-lg rounded-xl">
           {Object.keys(PACKAGES).map((key) => (
             <PackagePill
               key={key}

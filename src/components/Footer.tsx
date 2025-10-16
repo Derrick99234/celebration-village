@@ -57,7 +57,7 @@ const FooterSection: React.FC = () => {
             </div>
 
             <p className="text-sm text-neutral-300 max-w-sm mb-6 leading-relaxed">
-              &ldquo;Empire Banquet is not just a venue but Grand Venue for
+              &ldquo;Celebration Village is not just a venue but Grand Venue for
               Gracious Occasions&ldquo;. With one large we can accommodate with
               either one large gathering or two gatherings.
             </p>
@@ -168,7 +168,7 @@ const FooterSection: React.FC = () => {
               </svg>
               <div>
                 <span className="font-semibold text-white block">Call Us</span>
-                403-390-3000
+                587-968-5657
               </div>
             </div>
 
@@ -184,7 +184,7 @@ const FooterSection: React.FC = () => {
               </svg>
               <div>
                 <span className="font-semibold text-white block">Email Us</span>
-                info@empirebanquet.ca
+                acelebrationvillage@gmail.com
               </div>
             </div>
           </div>

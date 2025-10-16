@@ -41,12 +41,11 @@ function Header() {
       >
         <Link href="/menu">Our Menu</Link>
       </li>
-      <li className="hover:text-gray-300 transition duration-150">
-        {/* Highlight the active page's link */}
+      {/* <li className="hover:text-gray-300 transition duration-150">
         <Link href="/packages" className="font-semibold text-white">
           Packages
         </Link>
-      </li>
+      </li> */}
       <li
         className="hover:text-gray-300 transition duration-150"
         onClick={toggleMenu}
@@ -76,7 +75,7 @@ function Header() {
           </address>
           <span className="flex gap-2 items-center text-gray-700 font-medium">
             <MdOutlineLocalPhone className="text-amber-600" />
-            +1 (555) 123-4567
+            +1 (587) 968 5657
           </span>
         </div>
         {/* Social Icons - Always visible on desktop */}
@@ -89,13 +88,11 @@ function Header() {
       {/* --- 2. Main Navigation Bar --- */}
       <nav className="bg-yellow-700 text-white flex justify-between lg:justify-center items-center p-3 lg:p-4">
         {/* Logo (Adjusted position and size for better flow) */}
-        <div className="h-10 w-[100px] sm:w-[120px] ml-4 lg:ml-0">
+        <div className="h-10 w-[100px] sm:w-[120px] ml-4 lg:ml-0 z-100">
           <Image
             src="/celebration_village_logo.png"
             alt="Celebration Village Logo"
-            // layout="fill"
-            // objectFit="contain"
-            className="absolute left-4 top-0" // Override fixed width/height for responsive image wrapper
+            className="absolute left-4 top-0"
             width={110}
             height={72}
           />
@@ -116,8 +113,8 @@ function Header() {
 
       {/* --- 3. Mobile Dropdown Menu --- */}
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-[100%] w-full bg-amber-700/95 shadow-xl transition-all duration-300">
-          <ul className="flex flex-col gap-2 p-4 text-white text-lg font-medium">
+        <div className="lg:hidden absolute top-[100%] w-full bg-yellow-700/95 transition-all duration-300">
+          <ul className="flex flex-col gap-2 p-4 pt-16 text-white text-lg font-medium">
             {navLinks}
             <li className="pt-2 mt-2 border-t border-amber-500">
               <address className="flex gap-2 items-center text-sm font-normal text-amber-100">
@@ -126,7 +123,7 @@ function Header() {
             </li>
             <li>
               <span className="flex gap-2 items-center text-sm font-normal text-amber-100">
-                <MdOutlineLocalPhone /> +1 (555) 123-4567
+                <MdOutlineLocalPhone /> +1 (587) 968 5657
               </span>
             </li>
           </ul>

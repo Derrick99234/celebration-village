@@ -202,7 +202,7 @@ const CelebrationTabs: React.FC<{
   activeTab: string;
   setActiveTab: (key: string) => void;
 }> = ({ activeTab, setActiveTab }) => (
-  <div className="flex flex-wrap justify-center space-x-2 md:space-x-4 mb-8">
+  <div className="flex flex-wrap justify-center gap-4 space-x-2 md:space-x-4 mb-8">
     {CELEBRATION_CATEGORIES.map((category) => (
       <button
         key={category.key}
