@@ -17,17 +17,13 @@ const VenueMonitorDisplay: React.FC = () => {
           {/* Placeholder for the main venue image */}
           {/* Note: In a real Next.js app, you would use the <Image> component here */}
           <Image
-            src="https://placehold.co/900x500/171717/F59E0B?text=Venue+Setup+Preview"
+            src="https://cdn.pixabay.com/photo/2020/04/07/18/33/cups-5014444_1280.png"
             width={400}
             height={400}
             alt="Venue setup preview on a monitor"
             className="w-full h-full object-cover opacity-80"
             // Using a simple CSS overlay for the monitor effect
             style={{ filter: "grayscale(20%) brightness(120%)" }}
-            onError={(e) => {
-              e.currentTarget.src =
-                "https://placehold.co/900x500/171717/F59E0B?text=Venue+Setup+Preview";
-            }}
           />
 
           {/* Simple Date Overlay for the image effect */}

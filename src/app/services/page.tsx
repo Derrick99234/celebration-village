@@ -306,10 +306,6 @@ const ServicesPage: React.FC = () => {
                     src={focus.image}
                     alt={focus.title}
                     className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://placehold.co/400x250/E9D5A0/44403C?text=Image+Missing";
-                    }}
                   />
                 </div>
                 <div className="flex items-center mb-3">
@@ -340,10 +336,6 @@ const ServicesPage: React.FC = () => {
                   src={img.src}
                   alt={img.alt}
                   className="w-full h-full object-cover transition duration-500 hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/600x400/D97706/44403C?text=Image+Missing";
-                  }}
                 />
               </div>
             ))}
@@ -402,10 +394,6 @@ const ServicesPage: React.FC = () => {
                     src={serviceGroup.image}
                     alt={serviceGroup.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://placehold.co/600x400/E9D5A0/44403C?text=Image+Missing";
-                    }}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-amber-600 mb-2">

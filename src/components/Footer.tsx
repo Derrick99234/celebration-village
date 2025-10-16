@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 
 // Define data structures for clarity
@@ -43,12 +44,15 @@ const FooterSection: React.FC = () => {
           {/* 1. Logo and Description */}
           <div className="col-span-1 md:col-span-4 flex flex-col items-start">
             <div className="flex items-center mb-4">
-              {/* Placeholder for the Logo/EBH Icon (using text + color for effect) */}
-              <div className="text-3xl font-extrabold text-amber-500 mr-2 border-2 border-amber-500 p-2 rounded-full">
-                EBH
-              </div>
+              <Image
+                src="/celebration_village_logo.png"
+                alt="Celebration Village Logo"
+                className=""
+                width={110}
+                height={72}
+              />
               <div className="text-lg font-semibold uppercase text-white">
-                Empire Banquet Hall
+                Celebration village
               </div>
             </div>
 
