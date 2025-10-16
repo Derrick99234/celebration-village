@@ -1,42 +1,16 @@
 import { NextResponse } from "next/server";
-import * as XLSX from "xlsx";
-import fs from "fs";
-import path from "path";
+import { connectDB } from "@/lib/mongodb";
+import Booking from "@/models/Booking";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
+    await connectDB();
 
-    // ✅ Save Excel inside /public folder
-    const fileDir = path.join(process.cwd(), "public");
-    const filePath = path.join(fileDir, "bookings.xlsx");
+    const booking = await Booking.create(data);
 
-    // Make sure the directory exists
-    if (!fs.existsSync(fileDir)) {
-      fs.mkdirSync(fileDir, { recursive: true });
-    }
-
-    let workbook, worksheet;
-
-    if (fs.existsSync(filePath)) {
-      workbook = XLSX.readFile(filePath);
-      worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    } else {
-      workbook = XLSX.utils.book_new();
-      worksheet = XLSX.utils.json_to_sheet([]);
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Bookings");
-    }
-
-    const existingData = XLSX.utils.sheet_to_json(worksheet);
-    const newData = [...existingData, data];
-    const newWorksheet = XLSX.utils.json_to_sheet(newData);
-    workbook.Sheets[workbook.SheetNames[0]] = newWorksheet;
-
-    // ✅ Save to file
-    XLSX.writeFile(workbook, filePath);
-
-    // ✅ Email Notifications
+    // Send notification email to admin
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -45,39 +19,26 @@ export async function POST(req: Request) {
       },
     });
 
-    // Notify admin
     await transporter.sendMail({
-      from: `"Event Booking" <${process.env.EMAIL_USER}>`,
+      from: process.env.ADMIN_EMAIL,
       to: process.env.ADMIN_EMAIL,
-      subject: "📩 New Event Booking Received",
-      text: `
-New booking received:
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone}
-Event Type: ${data.eventType}
-Date: ${data.date}
-Guests: ${data.guestCount}
-Message: ${data.message}
-      `,
+      subject: "🎉 New Event Booking Received",
+      text: `New Booking:\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nEvent Type: ${data.eventType}\nDate: ${data.date}\nGuests: ${data.guestCount}\nMessage: ${data.message}`,
     });
 
-    // Confirm with user
+    // Confirmation email to user
     await transporter.sendMail({
-      from: `"Event Booking" <${process.env.EMAIL_USER}>`,
+      from: process.env.ADMIN_EMAIL,
       to: data.email,
-      subject: "✅ Your Event Booking Confirmation",
-      text: `Hi ${data.name},\n\nWe’ve received your booking for "${data.eventType}". We’ll get in touch with you shortly.\n\nThank you!`,
+      subject: "✅ Event Booking Confirmation",
+      text: `Hi ${data.name},\n\nYour event booking has been received successfully!\nWe'll get in touch soon.\n\nThank you for choosing Celebration Village!`,
     });
 
-    return NextResponse.json({
-      success: true,
-      message: "Booking saved and emails sent",
-    });
-  } catch (error) {
-    console.error("Error:", error);
+    return NextResponse.json({ success: true, booking });
+  } catch (err) {
+    console.error("Booking API Error:", err);
     return NextResponse.json(
-      { error: "Failed to process booking" },
+      { error: "Something went wrong" },
       { status: 500 }
     );
   }
