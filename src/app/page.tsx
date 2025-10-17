@@ -26,7 +26,7 @@ export default function Home() {
       h1: "Your Dream Event, Our Passionate Craft",
       text: "At Celebration Village, we believe in transforming each celebration into a timeless experience. Our team of passionate creators works with you to design, plan, and execute every detail with grace. Experience a celebration beyond your imagination, where every moment tells a story of connection, joy, and celebration.",
       ctaText: "Start Planning",
-      ctaLink: "/plan-event",
+      ctaLink: "/book-event",
     },
     {
       image:
